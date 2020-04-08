@@ -20,28 +20,35 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Janlei’s note!">
-<meta property="og:url" content="http://yoursite.com/index.html">
+  <meta name="description" content="踩坑记-docker-redis&amp;emsp;在使用Docker Redis搭载配置redis.conf的时候出现问题 sh1docker run -d -p 6379:6379 -v &#x2F;redis&#x2F;conf&#x2F;redis.conf:&#x2F;redis&#x2F;redis.conf -v &#x2F;redis&#x2F;data:&#x2F;data --name">
+<meta property="og:type" content="article">
+<meta property="og:title" content="docker-redis">
+<meta property="og:url" content="http://yoursite.com/2020/04/08/docker-redis/index.html">
 <meta property="og:site_name" content="Janlei’s note!">
+<meta property="og:description" content="踩坑记-docker-redis&amp;emsp;在使用Docker Redis搭载配置redis.conf的时候出现问题 sh1docker run -d -p 6379:6379 -v &#x2F;redis&#x2F;conf&#x2F;redis.conf:&#x2F;redis&#x2F;redis.conf -v &#x2F;redis&#x2F;data:&#x2F;data --name">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-08T00:57:15.000Z">
+<meta property="article:modified_time" content="2020-04-08T01:02:23.249Z">
 <meta property="article:author" content="Janlei">
+<meta property="article:tag" content="踩坑记">
+<meta property="article:tag" content="docker">
+<meta property="article:tag" content="redis">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/">
+<link rel="canonical" href="http://yoursite.com/2020/04/08/docker-redis/">
 
 
 <script id="page-configurations">
   // https://hexo.io/docs/variables.html
   CONFIG.page = {
     sidebar: "",
-    isHome : true,
-    isPost : false,
+    isHome : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Janlei’s note!</title>
+  <title>docker-redis | Janlei’s note!</title>
   
 
 
@@ -154,9 +161,10 @@
         <div class="content-wrap">
           
 
-          <div class="content index posts-expand">
+          <div class="content post posts-expand">
             
-      
+
+    
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
@@ -172,10 +180,9 @@
       <meta itemprop="name" content="Janlei’s note!">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/08/docker-redis/" class="post-title-link" itemprop="url">docker-redis</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          docker-redis
+        </h1>
 
         <div class="post-meta">
             <span class="post-meta-item">
@@ -199,7 +206,7 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="踩坑记-docker-redis"><a href="#踩坑记-docker-redis" class="headerlink" title="踩坑记-docker-redis"></a>踩坑记-docker-redis</h1><p>&emsp;在使用Docker Redis搭载配置redis.conf的时候出现问题</p>
+        <h1 id="踩坑记-docker-redis"><a href="#踩坑记-docker-redis" class="headerlink" title="踩坑记-docker-redis"></a>踩坑记-docker-redis</h1><p>&emsp;在使用Docker Redis搭载配置redis.conf的时候出现问题</p>
 <h2 id="sh"><a href="#sh" class="headerlink" title="sh"></a>sh</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">docker run -d -p 6379:6379 -v &#x2F;redis&#x2F;conf&#x2F;redis.conf:&#x2F;redis&#x2F;redis.conf -v &#x2F;redis&#x2F;data:&#x2F;data --name redis docker.io&#x2F;redis redis-server &#x2F;redis&#x2F;conf&#x2F;redis.conf --appendonly yes</span><br></pre></td></tr></table></figure>
 <h2 id="查看是否启动"><a href="#查看是否启动" class="headerlink" title="查看是否启动"></a>查看是否启动</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">[root@izm5eefpcac292ogpkaysuz ~]# docker run -d -p 6379:6379 -v &#x2F;redis&#x2F;conf&#x2F;redis.conf:&#x2F;redis&#x2F;redis.conf -v &#x2F;redis&#x2F;data:&#x2F;data --name redis docker.io&#x2F;redis redis-server &#x2F;redis&#x2F;conf&#x2F;redis.conf --appendonly yes</span><br><span class="line">f6d4d7848a9a9e0489a87dfb51da965e2a340941a718175ab2a4a262482c5371</span><br><span class="line">[root@izm5eefpcac292ogpkaysuz ~]# docker ps -a</span><br><span class="line">CONTAINER ID        IMAGE                           COMMAND                  CREATED             STATUS                      PORTS                                              NAMES</span><br><span class="line">f6d4d7848a9a        docker.io&#x2F;redis                     &quot;docker-entrypoint...&quot;   13 seconds ago      Exited (1) 12 seconds ago                                                      redis</span><br></pre></td></tr></table></figure>
 <h2 id="启动报错"><a href="#启动报错" class="headerlink" title="启动报错"></a>启动报错</h2><p>&emsp;在使用本地不配置redis.conf的时候，能够正常启动</p>
@@ -207,214 +214,35 @@
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">docker run \</span><br><span class="line">    -p 6379:6379 \ # 端口映射 宿主机:容器</span><br><span class="line">    -v $PWD&#x2F;data:&#x2F;data:rw \ # 映射数据目录 rw 为读写</span><br><span class="line">    -v $PWD&#x2F;conf&#x2F;redis.conf:&#x2F;etc&#x2F;redis&#x2F;redis.conf:ro \ # 挂载配置文件 ro 为readonly</span><br><span class="line">    --privileged&#x3D;true \ # 给与一些权限</span><br><span class="line">    --name myredis \ # 给容器起个名字</span><br><span class="line">    -d redis redis-server &#x2F;etc&#x2F;redis&#x2F;redis.conf # deamon 运行容器 并使用配置文件启动容器内的 redis-server</span><br></pre></td></tr></table></figure>
 <h3 id="reserve"><a href="#reserve" class="headerlink" title="reserve"></a>reserve</h3><p>&emsp; 因为启动配置主线程 deamon配置错误</p>
 
-      
     </div>
 
     
     
     
+
       <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
+          <div class="post-tags">
+              <a href="/tags/%E8%B8%A9%E5%9D%91%E8%AE%B0/" rel="tag"># 踩坑记</a>
+              <a href="/tags/docker/" rel="tag"># docker</a>
+              <a href="/tags/redis/" rel="tag"># redis</a>
+          </div>
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/mysql-index/">
+        
 
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Janlei">
-      <meta itemprop="description" content="">
-    </span>
 
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Janlei’s note!">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/05/mysql-index/" class="post-title-link" itemprop="url">mysql-index</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-04-05 18:52:59 / Modified: 20:22:33" itemprop="dateCreated datePublished" datetime="2020-04-05T18:52:59+08:00">2020-04-05</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Mysql索引"><a href="#Mysql索引" class="headerlink" title="Mysql索引"></a>Mysql索引</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
-<li><h3 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h3>&emsp;一般的应用系统，读写比例在10:1左右，而且插入操作和一般的更新操作很少出现性能问题，在生产环境中，我们遇到最多的，也是最容易出问题的，还是一些复杂的查询操作，因此对查询语句的优化显然是重中之重。说起加速查询，就不得不提到索引了。</li>
-<li><h3 id="为什么要有索引"><a href="#为什么要有索引" class="headerlink" title="为什么要有索引"></a>为什么要有索引</h3>&emsp;索引在MySQL中也叫做“键”，是存储引擎用于快速找到记录的一种数据结构。索引对于良好的性能非常关键，尤其是当表中的数据量越来越大时，索引对于性能的影响愈发重要。索引优化应该是对查询性能优化最有效的手段了。索引能够轻易将查询性能提高好几个数量级。索引相当于字典的音序表，如果要查某个字，如果不使用音序表，则需要从几百页中逐页去查。</li>
-<li><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
-<li>类似书籍的目录索引，提高了数据检索的效率，降低了数据磁盘的IO成本。</li>
-<li>通过索引列对数据进行排序，降低了数据排序的成本，降低了CPU的消耗。</li>
-</ol>
-</li>
-<li><h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
-<li>实际上索引也是一张表，该表中保存了主键与索引字段，并指向实体类的记录，所以所以列也是要占用磁盘空间。</li>
-<li>虽然索引大大提高了查询效率，但是与此同时也降低了更新表的速度。如对进行更新操作INSERT、UPDATE、DELETE，因为更新表时MYSQL不仅要保存数据，还要保存索引文件，每次更新了索引列的字段，都会调整索引信息。</li>
-</ol>
-</li>
-</ul>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><ul>
-<li><h3 id="内存、缓存、磁盘"><a href="#内存、缓存、磁盘" class="headerlink" title="内存、缓存、磁盘"></a>内存、缓存、磁盘</h3></li>
-<li><h3 id="磁盘IO与预读"><a href="#磁盘IO与预读" class="headerlink" title="磁盘IO与预读"></a>磁盘IO与预读</h3><h2 id="索引结构"><a href="#索引结构" class="headerlink" title="索引结构"></a>索引结构</h2></li>
-<li><p>BTREE索引</p>
-</li>
-<li><p>HASH索引 </p>
-</li>
-<li><p>R-TREE索引</p>
-</li>
-<li><p>FULL索引  </p>
-<table>
-<thead>
-<tr>
-<th align="left">索引</th>
-<th align="left">InnoDB</th>
-<th align="left">MyISAM</th>
-<th align="left">Memory</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">BTREE</td>
-<td align="left">支持</td>
-<td align="left">支持</td>
-<td align="left">支持</td>
-</tr>
-<tr>
-<td align="left">HASH</td>
-<td align="left">不支持</td>
-<td align="left">不支持</td>
-<td align="left">支持</td>
-</tr>
-<tr>
-<td align="left">R-TREE</td>
-<td align="left">不支持</td>
-<td align="left">支持</td>
-<td align="left">不支持</td>
-</tr>
-<tr>
-<td align="left">FULL</td>
-<td align="left">5.6后支持</td>
-<td align="left">支持</td>
-<td align="left">不支持</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<h2 id="索引使用"><a href="#索引使用" class="headerlink" title="索引使用"></a>索引使用</h2><h2 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h2>
-      
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/05/mysql-index/" rel="prev" title="mysql-index">
+      <i class="fa fa-chevron-left"></i> mysql-index
+    </a></div>
+      <div class="post-nav-item"></div>
     </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
       </footer>
+    
   </article>
   
   
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/04/sql-index/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Janlei">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Janlei’s note!">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/04/04/sql-index/" class="post-title-link" itemprop="url">sql-index</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-
-              <time title="Created: 2020-04-04 19:46:18" itemprop="dateCreated datePublished" datetime="2020-04-04T19:46:18+08:00">2020-04-04</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">Edited on</span>
-                <time title="Modified: 2020-04-05 10:15:15" itemprop="dateModified" datetime="2020-04-05T10:15:15+08:00">2020-04-05</time>
-              </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Note-My-Bad-Smell"><a href="#Note-My-Bad-Smell" class="headerlink" title="Note My Bad Smell"></a>Note My Bad Smell</h1><p>&emsp; 在行方的生产环境修复功能的时候出现了修改数据:</p>
-<ul>
-<li>在下发fix文件的时候，没有确认fix.sql是否存在错误</li>
-</ul>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">update wf_operstas set ymonth &#x3D; concat(ymonth,&#39;-12&#39;) where length(ymonth)&#x3D;7 and orgcd&#x3D;&#39;015302&#39;;</span><br></pre></td></tr></table></figure>
-<p>&emsp;错误的把sql的关键词update写成了udpate，留给行方测试人员一种不专业的印象。在联系他人的时候，一定要校验发出去之前的信息，不能在这些地方给人遗留一种不好的印象。<br>&emsp;在修改的sql以后,下发的fix.sql能够测试环境运行，到行方生产环境出现了联合索引已存在。也就是在修改数据前，没有进行table的表结构校验，应该先确认是否含有主键索引，是否存在修改数据异常这类问题。<br>&emsp;在行方业务人员到处数据后，确认是否修改数据与元数据冲突导致sql语句执行失败。在update后的数据数据会与已存在联合唯一索引的数据冲突从而导致修改数据失败。</p>
-<h2 id="解决方案"><a href="#解决方案" class="headerlink" title="解决方案"></a>解决方案</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">-- 修改一条</span><br><span class="line">update wf_operstas set ymonth &#x3D; concat(ymonth,&#39;-14&#39;) where length(ymonth)&#x3D;7 and orgcd&#x3D;&#39;015302&#39;;</span><br><span class="line"></span><br><span class="line">-- 校验修改后一条的格式</span><br><span class="line">select a.orgcd,a.orgnm,a.ymonth from wf_operstas a inner join bas_area b on a.areacd&#x3D;b.code where a.orgcd&#x3D;&#39;015302&#39;;  </span><br><span class="line"></span><br><span class="line">-- 修改所有</span><br><span class="line">update wf_operstas set ymonth &#x3D; concat(ymonth,&#39;-14&#39;) where length(ymonth)&#x3D;7;</span><br><span class="line"></span><br><span class="line">-- 校验所有是否正确</span><br><span class="line">select a.orgcd,a.orgnm,a.ymonth from wf_operstas a inner bas_area b on a.areacd&#x3D;b.code where length(a.ymonth)!&#x3D;10;</span><br></pre></td></tr></table></figure>
-<h2 id="待做"><a href="#待做" class="headerlink" title="待做"></a>待做</h2><ol>
-<li>MySQL索引原理与使用</li>
-<li>MySQL如何使用索引以达到优化查询</li>
-</ol>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-
   
 
 
@@ -467,6 +295,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#踩坑记-docker-redis"><span class="nav-number">1.</span> <span class="nav-text">踩坑记-docker-redis</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#sh"><span class="nav-number">1.1.</span> <span class="nav-text">sh</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#查看是否启动"><span class="nav-number">1.2.</span> <span class="nav-text">查看是否启动</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#启动报错"><span class="nav-number">1.3.</span> <span class="nav-text">启动报错</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#sh-1"><span class="nav-number">1.3.1.</span> <span class="nav-text">sh</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#then"><span class="nav-number">1.3.2.</span> <span class="nav-text">then</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#reserve"><span class="nav-number">1.3.3.</span> <span class="nav-text">reserve</span></a></li></ol></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
