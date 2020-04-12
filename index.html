@@ -160,6 +160,76 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/12/build-mock/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Janlei">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Janlei’s note!">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/04/12/build-mock/" class="post-title-link" itemprop="url">build-mock</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-12 21:12:17 / Modified: 21:15:25" itemprop="dateCreated datePublished" datetime="2020-04-12T21:12:17+08:00">2020-04-12</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">In</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/auto-test/" itemprop="url" rel="index"><span itemprop="name">auto test</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="How-to-Build-Mock"><a href="#How-to-Build-Mock" class="headerlink" title="How to Build Mock"></a>How to Build Mock</h1><p>&emsp;在我们使用TDD编程的时候需要大量的测试数据来进行断言验证是否能通过测试,那么进行测试案例编写的时候我们需要的数据如何得到。  </p>
+<h2 id="For-Exmaple"><a href="#For-Exmaple" class="headerlink" title="For Exmaple"></a>For Exmaple</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">public class Test&#123;</span><br><span class="line"></span><br><span class="line">    @Test</span><br><span class="line">    public void two_sum()&#123;</span><br><span class="line">        assertThat(3,Math.addExact(1,2));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>&emsp; 对于测试案例中的3,1,2 这样的数据，如何建立mock实现自动化测试，而不是开发人员用极少案例数据进行tdd</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/09/test/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -607,14 +677,20 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
       </div>
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">8</span>
+        <span class="site-state-item-count">9</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
