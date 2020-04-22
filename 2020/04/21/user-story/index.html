@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="What Is the User Story概述 软件需求是一个沟通问题。一旦任何一方在沟通中把持绝对地位，项目就会遭受损失。如果业务方把持绝对地位，他们就会关注软件功能和交付日期，却很少关注开发人员是否能够同时满足这两个目标，或者开发人员是否确切地了解需求。如果开发人员把持绝对地位，技术术语就会代替业务语言，从而导致开发人员无法倾听业务方的实际需求。 用户故事描述了对用户、系统或软件购买者有价值">
+<meta property="og:type" content="article">
+<meta property="og:title" content="user-story">
+<meta property="og:url" content="http://yoursite.com/2020/04/21/user-story/index.html">
+<meta property="og:site_name" content="Janlei’s note!">
+<meta property="og:description" content="What Is the User Story概述 软件需求是一个沟通问题。一旦任何一方在沟通中把持绝对地位，项目就会遭受损失。如果业务方把持绝对地位，他们就会关注软件功能和交付日期，却很少关注开发人员是否能够同时满足这两个目标，或者开发人员是否确切地了解需求。如果开发人员把持绝对地位，技术术语就会代替业务语言，从而导致开发人员无法倾听业务方的实际需求。 用户故事描述了对用户、系统或软件购买者有价值">
+<meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-21T11:29:25.000Z">
+<meta property="article:modified_time" content="2020-04-22T14:38:55.687Z">
+<meta property="article:author" content="Janlei">
+<meta property="article:tag" content="agile">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://yoursite.com/2020/04/21/user-story/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'en'
+  };
+</script>
+
+  <title>user-story | Janlei’s note!</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">Janlei’s note!</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>Home</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>Tags</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>Categories</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>Archives</a>
+
+  </li>
+        <li class="menu-item menu-item-schedule">
+
+    <a href="/schedule/" rel="section"><i class="fa fa-calendar fa-fw"></i>Schedule</a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/21/user-story/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Janlei">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Janlei’s note!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          user-story
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+
+              <time title="Created: 2020-04-21 19:29:25" itemprop="dateCreated datePublished" datetime="2020-04-21T19:29:25+08:00">2020-04-21</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">Edited on</span>
+                <time title="Modified: 2020-04-22 22:38:55" itemprop="dateModified" datetime="2020-04-22T22:38:55+08:00">2020-04-22</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="What-Is-the-User-Story"><a href="#What-Is-the-User-Story" class="headerlink" title="What Is the User Story"></a>What Is the User Story</h1><h2 id="概述"><a href="#概述" class="headerlink" title="概述"></a>概述</h2><ol>
+<li>软件需求是一个沟通问题。一旦任何一方在沟通中把持绝对地位，项目就会遭受损失。如果业务方把持绝对地位，他们就会关注软件功能和交付日期，却很少关注开发人员是否能够同时满足这两个目标，或者开发人员是否确切地了解需求。如果开发人员把持绝对地位，技术术语就会代替业务语言，从而导致开发人员无法倾听业务方的实际需求。</li>
+<li>用户故事描述了对用户、系统或软件购买者有价值的功能。用户故事由以下三个方面组成。<ul>
+<li>一份书面的故事描述，用来做计划和作为提示，卡片（Card）。</li>
+<li>有故事的对话，用于具体化故事细节，对话（Conversation)。</li>
+<li>测试，用户表达和编档故事细节且可用于确定故事何时完成，确认（Confirmation）。</li>
+</ul>
+</li>
+<li>卡片代表客户用户故事而不是记录需求。用户故事代表用户有价值的功能。</li>
+<li>如果一个故事很大，我们有时候就称之为史诗故事（Epic）。史诗故事可以分成两个或更多的故事。</li>
+<li>我们并不需要不断地分解故事，直到有一个故事能够覆盖每一个细节。类似的，用户故事不需要像典型的需求文档样式那样扩从。与其写下这些故事细节，还不如让开团队和客户讨论这些细节，即在这些细节变得重要时才讨论。</li>
+<li>故事并不是具有契约性质，达成的协议将由测试来记录，这些测试将演示故事是否被正确开发。</li>
+<li>用户的期望最好以验收测试的形式被记录下来。开发人员如果能了解客户的期望，他们便能指导什么时候算是完成了客户要求的功能。</li>
+<li>客户为什么要编写故事？<ul>
+<li>由客户团队而不是开发人员来编写用户故事基于两个原因。首先，每个故事必须用商业语言来写，而不是技术术语，这样一样，客户团队可以排列故事的优先级，放入迭代和发布。其次，作为主要产品构想着，客户团队所处的位置最适合描述产品行为。</li>
+</ul>
+</li>
+<li>一个项目的用户故事初稿通常是在故事编写工作坊（workshop）中写就的，但用户故事可以在项目生命周期的任何时候编写。在故事编写会上，大家集思广益，充分想象用户故事。有了可以开始工作的故事集合后，开发人员便可以估计每个故事的大小。</li>
+<li>客户团队和开发人员一起选择迭代长度，可能一周到四周的时间。在项目进行期间将使用同样迭代长度。在每轮迭代结束时，开发人员将负责发布完全可用的应用程序子集。客户团队在迭代期间高度参与，与开发人员谈论迭代期间正在开发的故事。在迭代期间，客户团队也会详细定义测试，并且跟开发人员一起编写运行自动化测试。此外客户团队要确保项目能够达成交付所需产品的目标。</li>
+<li>一旦确定迭代长度，开发人员就会估计每轮迭代中可以做多少事情。我们称之为速率(velocity)。团队的第一速率估计可能是错误的，因为无法事先知道团队的效率。然后，我们可以用初步估算来勾勒出大致的蓝图或者发布计划，用以说明在每轮迭代中完成哪些工作，需要多少迭代周期。</li>
+<li>为了做发布计划，我们把故事排列成许多堆，每一对代表一轮迭代。每一轮包含一定数量的故事，其中故事中和不超过事先估算的速率。最高优先级的故事放在第一堆。当那一个堆放满以后，次高优先级的故事放入第二堆（代表第二轮迭代）。这样持续进行，知道已经有很多堆故事需要完成以后，估计会占用完这个项目的时间为止，或者知道这些故事堆已经可以代表产品的一个新发布计划为止。</li>
+<li>在每轮迭代开始前，客户团队可以在中途修正计划。当迭代结束后，我们可以得知开发团队的实际速率，然后用它代替估算速率进行估算。这意味着每一堆故事可能需要通过增加或者移除来进行调整。有些故事可能比预期的简单很多，所以有时开发团队想在迭代中完成另外的故事。但有些故事比预期困难，这时就要把有些工作移到下一轮迭代或者下一个发布计划中去完成。</li>
+<li>一个发布有一个或多轮迭代组成。发布规则指的是确定项目时间表和预期功能集合之间达到平衡。迭代规则涉及选择迭代包含的故事。客户团队和开发人员在发布和迭代规划中都要参与。</li>
+<li>客户团队授信啊从排列故事优先级开始。在排列优先级的时候，需要考虑下里面几点：<ul>
+<li>大部分用户和客户对特定特性的渴望程度。</li>
+<li>小部分重要用户和客户对特定特性的渴望程度。</li>
+<li>故事之间的关系。例如，“缩小（zoom out）”这个故事的优先级可能不高，但是它可能被看做是高优先级的，因为它与高优先级的另一个故事“放大（zoom in）”互补。</li>
+</ul>
+</li>
+<li>在许多故事的优先级上，开发人员可能与客户团队意见相左。他们可能基于技术风险方面的考虑。或者由于某个故事是其他故事的互补故事，而建议改变故事的优先级。客户团队应该倾听他们的观点，但是随后排序故事优先级时，应该坚持客户组织利益最大化的原则。</li>
+<li>为发布中的所有迭代分配故事后，发布计划便“浮出水面”。要确保每轮迭代中分配的故事点不超过团队开发预期的速率。</li>
+<li>为什么编写用户故事而不是继续编写需求文档或则用例（use case）?<ul>
+<li>用户故事强调对话交流而不是书面沟通。</li>
+<li>用户故事可以同时被你和开发人员理解。</li>
+<li>用户故事的大小适合于做计划。</li>
+<li>用户故事鼓励推迟考虑细节，知道你非常清楚地了解自己的真正需求。</li>
+</ul>
+</li>
+<li>由于用户故事没有技术术语（记住，他们是由客户团队编写的）,所以开发人员和客户团队双方都能理解。</li>
+<li>总结:<ul>
+<li>故事卡包含对用户或者客户有价值的功能的简短描述。</li>
+<li>故事卡是故事的可见部分，但客户团队和开发人员关于故事的对话更重要。</li>
+<li>客户团队包括哪些确保软件符合潜在用户需求的人，可以包括测试人员、产品经理、实际用户与交互设计师。</li>
+<li>故事卡由客户团队编写，因为它们最了解如何表达需要实现的需求，也因为他们会在后期与开发人员共同确定故事细节并安排故事的优先级顺序。</li>
+<li>按照故事对客户的价值来安排故事的优先级顺序。</li>
+<li>将各个故事放入迭代，进行发布与迭代规划。</li>
+<li>速率是开发人员可以在一轮迭代中完成的工作量。</li>
+<li>放入一轮迭代的故事估计总和不能超过事先开发人员预计的速率。</li>
+<li>如果故事太大以至于无法在一轮迭代中完成，可以考虑把它分成两个或更多的小故事。</li>
+<li>验收测试用于验证实现的故事是否开发成符合客户团队的设想。</li>
+<li>用户故事是很有意义的，因为他们强调口头交流，你和开发人员都可以理解，可以用于进行迭代计划，在迭代开发过程中能很好地工作，而且因为他们鼓励推迟细节</li>
+</ul>
+</li>
+</ol>
+<p><a href="http://jianshu.com/p/381fff3f116f" target="_blank" rel="noopener">http://jianshu.com/p/381fff3f116f</a></p>
+
+    </div>
+
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/agile/" rel="tag"># agile</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/20/mvcc-mysql/" rel="prev" title="mvcc-mysql">
+      <i class="fa fa-chevron-left"></i> mvcc-mysql
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/22/search-arithmetic/" rel="next" title="search-arithmetic">
+      search-arithmetic <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#What-Is-the-User-Story"><span class="nav-number">1.</span> <span class="nav-text">What Is the User Story</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#概述"><span class="nav-number">1.1.</span> <span class="nav-text">概述</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+  <p class="site-author-name" itemprop="name">Janlei</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">1</span>
+        <span class="site-state-item-name">categories</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">17</span>
+        <span class="site-state-item-name">tags</span></a>
+      </div>
+  </nav>
+</div>
+
+
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2020</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Janlei</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> & <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a>
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+</body>
+</html>
