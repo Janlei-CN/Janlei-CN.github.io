@@ -20,15 +20,20 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Janlei’s note!">
-<meta property="og:url" content="http://yoursite.com/archives/2020/04/index.html">
+  <meta name="description" content="BitMap算法详解&amp;emsp;所谓的BitMap就是用一个bit位来标记某个元素所对应的value，而key即使该元素，由于BitMap使用了bit位来存储数据，因此可以大大节省存储空间。 基本思想：&amp;emsp;假设我们要对0-7内的5个元素（4,7,2,5,3）进行排序（这里假设元素没有重复）。我们可以使用BitMap算法来达到排序目的。要表示8个数，我们需要8个byte。  首先，我们开辟一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="bitmap">
+<meta property="og:url" content="http://yoursite.com/2020/04/26/bitmap/index.html">
 <meta property="og:site_name" content="Janlei’s note!">
+<meta property="og:description" content="BitMap算法详解&amp;emsp;所谓的BitMap就是用一个bit位来标记某个元素所对应的value，而key即使该元素，由于BitMap使用了bit位来存储数据，因此可以大大节省存储空间。 基本思想：&amp;emsp;假设我们要对0-7内的5个元素（4,7,2,5,3）进行排序（这里假设元素没有重复）。我们可以使用BitMap算法来达到排序目的。要表示8个数，我们需要8个byte。  首先，我们开辟一">
 <meta property="og:locale" content="en_US">
+<meta property="article:published_time" content="2020-04-26T11:18:01.000Z">
+<meta property="article:modified_time" content="2020-04-26T12:36:48.100Z">
 <meta property="article:author" content="Janlei">
+<meta property="article:tag" content="search">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/archives/2020/04/">
+<link rel="canonical" href="http://yoursite.com/2020/04/26/bitmap/">
 
 
 <script id="page-configurations">
@@ -36,12 +41,12 @@
   CONFIG.page = {
     sidebar: "",
     isHome : false,
-    isPost : false,
+    isPost : true,
     lang   : 'en'
   };
 </script>
 
-  <title>Archive | Janlei’s note!</title>
+  <title>bitmap | Janlei’s note!</title>
   
 
 
@@ -154,234 +159,123 @@
         <div class="content-wrap">
           
 
-          <div class="content archive">
+          <div class="content post posts-expand">
             
 
+    
   
   
-  
-  <div class="post-block">
-    <div class="posts-collapse">
-      <div class="collection-title">
-        <span class="collection-header">Um..! 14 posts in total. Keep on posting.</span>
-      </div>
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/26/bitmap/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Janlei">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Janlei’s note!">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          bitmap
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-04-26 19:18:01 / Modified: 20:36:48" itemprop="dateCreated datePublished" datetime="2020-04-26T19:18:01+08:00">2020-04-26</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    <div class="collection-year">
-      <span class="collection-header">2020</span>
-    </div>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-26T19:18:01+08:00"
-              content="2020-04-26">
-          04-26
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/26/bitmap/" itemprop="url">
-            <span itemprop="name">bitmap</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-24T07:36:51+08:00"
-              content="2020-04-24">
-          04-24
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/24/halting-problem/" itemprop="url">
-            <span itemprop="name">halting-problem</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-22T19:39:19+08:00"
-              content="2020-04-22">
-          04-22
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/22/search-arithmetic/" itemprop="url">
-            <span itemprop="name">search-arithmetic</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-21T19:29:25+08:00"
-              content="2020-04-21">
-          04-21
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/21/user-story/" itemprop="url">
-            <span itemprop="name">user-story</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-20T14:45:20+08:00"
-              content="2020-04-20">
-          04-20
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/20/mvcc-mysql/" itemprop="url">
-            <span itemprop="name">mvcc-mysql</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-16T19:25:40+08:00"
-              content="2020-04-16">
-          04-16
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/16/spring-annotation/" itemprop="url">
-            <span itemprop="name">spring-annotation</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-15T20:21:08+08:00"
-              content="2020-04-15">
-          04-15
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/15/git-fast/" itemprop="url">
-            <span itemprop="name">git-fast</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-13T23:16:33+08:00"
-              content="2020-04-13">
-          04-13
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/13/association-ibatis/" itemprop="url">
-            <span itemprop="name">association-ibatis</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-12T22:09:03+08:00"
-              content="2020-04-12">
-          04-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/12/idea-fast/" itemprop="url">
-            <span itemprop="name">idea-fast</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
-  <article itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
-
-      <div class="post-meta">
-        <time itemprop="dateCreated"
-              datetime="2020-04-12T21:12:17+08:00"
-              content="2020-04-12">
-          04-12
-        </time>
-      </div>
-
-      <div class="post-title">
-          <a class="post-title-link" href="/2020/04/12/build-mock/" itemprop="url">
-            <span itemprop="name">build-mock</span>
-          </a>
-      </div>
-
-    </header>
-  </article>
-
+        <h1 id="BitMap算法详解"><a href="#BitMap算法详解" class="headerlink" title="BitMap算法详解"></a>BitMap算法详解</h1><p>&emsp;所谓的BitMap就是用一个bit位来标记某个元素所对应的value，而key即使该元素，由于BitMap使用了bit位来存储数据，因此可以大大节省存储空间。</p>
+<h2 id="基本思想："><a href="#基本思想：" class="headerlink" title="基本思想："></a>基本思想：</h2><p>&emsp;假设我们要对0-7内的5个元素（4,7,2,5,3）进行排序（这里假设元素没有重复）。我们可以使用BitMap算法来达到排序目的。要表示8个数，我们需要8个byte。</p>
+<ol>
+<li>首先，我们开辟一个字节（8byte）的空间，将这些空间的所有的byte位都设置为0</li>
+<li>然后，便用这5个元素，第一个元素是4，因为下边从0开始，因为我们把第五个字节的值设置为1</li>
+<li>其次，再处理剩下的四个元素，最终8个字节的状态如下图  </li>
+</ol>
+<table>
+<thead>
+<tr>
+<th>0</th>
+<th>1</th>
+<th>2</th>
+<th>3</th>
+<th>4</th>
+<th>5</th>
+<th>6</th>
+<th>7</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+</tbody></table>
+<ol start="4">
+<li>现在我们可以遍历以此bytes区域的位置输出（2，3，4，5，6），这样便达到了排序的目的<br>&emsp;从上面的例子我们可以卡出，BitMap算法的思想比较简单，关键的问题就是如何确定10进制的数到2进制的映射图。<h2 id="Map映射"><a href="#Map映射" class="headerlink" title="Map映射"></a>Map映射</h2>&emsp;假设需要排序或则查找数的总数N=100000000，BitMap中1bit代表一个数字，1个int = 4Bytes = 4*8bit = 32 bit，那么N个数则需要N/32 int空间。所以我们需要申请内容空间的大小为int a[1 + n/32]，其中：a[0]在内存中占32位可以对应十进制数0-31，以此类推：<br>a[0]————————–&gt; 0-31<br>a[1]————————–&gt; 32-63<br>a[2]————————–&gt; 64-95<br>a[3]————————–&gt; 96-127  </li>
+</ol>
+<p>&emsp;那么十进制数如何转换为对应的bit位，下面介绍位移将十进制数转换为对应的bit位：  </p>
+<ol>
+<li>求十进制数在对应数组a中的下标<br>&emsp;十进制数0-31，对应在数组a[0]中，32-63对应在a[1]中，使用数据归纳法分析得出结论：对于一个十进制数n，其在数组a中的下标为：a[n/32]</li>
+<li>求出十进制数在对应数a[i]中的下标<br>&emsp;假如十进制数1在a[0]的下标为1，十进制数31在a[0]中下标为31，十进制32在a[1]中下标为0。在十进制0-31就对应0-31，而32-63则对应也是0-31，即给定一个数n可以通过模32求得在对应数组a[i]中的下标。</li>
+<li>位移<br>&emsp;对于一个</li>
+</ol>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><ul>
+<li>[1] <a href="https://www.cnblogs.com/senlinyang/p/7885685.html" target="_blank" rel="noopener">简书</a></li>
+</ul>
 
     </div>
-  </div>
-  
-  
-  
 
+    
+    
+    
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/search/" rel="tag"># search</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/04/24/halting-problem/" rel="prev" title="halting-problem">
+      <i class="fa fa-chevron-left"></i> halting-problem
+    </a></div>
+      <div class="post-nav-item"></div>
+    </div>
+      </footer>
+    
+  </article>
   
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/archives/2020/04/page/2/">2</a><a class="extend next" rel="next" href="/archives/2020/04/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
+  
+  
 
 
 
@@ -433,6 +327,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#BitMap算法详解"><span class="nav-number">1.</span> <span class="nav-text">BitMap算法详解</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#基本思想："><span class="nav-number">1.1.</span> <span class="nav-text">基本思想：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Map映射"><span class="nav-number">1.2.</span> <span class="nav-text">Map映射</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#参考"><span class="nav-number">1.3.</span> <span class="nav-text">参考</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
