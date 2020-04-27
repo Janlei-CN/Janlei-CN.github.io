@@ -28,7 +28,7 @@
 <meta property="og:description" content="BitMap算法详解&amp;emsp;所谓的BitMap就是用一个bit位来标记某个元素所对应的value，而key即使该元素，由于BitMap使用了bit位来存储数据，因此可以大大节省存储空间。 基本思想：&amp;emsp;假设我们要对0-7内的5个元素（4,7,2,5,3）进行排序（这里假设元素没有重复）。我们可以使用BitMap算法来达到排序目的。要表示8个数，我们需要8个byte。  首先，我们开辟一">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2020-04-26T11:18:01.000Z">
-<meta property="article:modified_time" content="2020-04-26T12:36:48.100Z">
+<meta property="article:modified_time" content="2020-04-26T12:37:40.151Z">
 <meta property="article:author" content="Janlei">
 <meta property="article:tag" content="search">
 <meta name="twitter:card" content="summary">
@@ -190,7 +190,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-04-26 19:18:01 / Modified: 20:36:48" itemprop="dateCreated datePublished" datetime="2020-04-26T19:18:01+08:00">2020-04-26</time>
+              <time title="Created: 2020-04-26 19:18:01 / Modified: 20:37:40" itemprop="dateCreated datePublished" datetime="2020-04-26T19:18:01+08:00">2020-04-26</time>
             </span>
 
           
@@ -236,7 +236,7 @@
 </tr>
 </tbody></table>
 <ol start="4">
-<li>现在我们可以遍历以此bytes区域的位置输出（2，3，4，5，6），这样便达到了排序的目的<br>&emsp;从上面的例子我们可以卡出，BitMap算法的思想比较简单，关键的问题就是如何确定10进制的数到2进制的映射图。<h2 id="Map映射"><a href="#Map映射" class="headerlink" title="Map映射"></a>Map映射</h2>&emsp;假设需要排序或则查找数的总数N=100000000，BitMap中1bit代表一个数字，1个int = 4Bytes = 4*8bit = 32 bit，那么N个数则需要N/32 int空间。所以我们需要申请内容空间的大小为int a[1 + n/32]，其中：a[0]在内存中占32位可以对应十进制数0-31，以此类推：<br>a[0]————————–&gt; 0-31<br>a[1]————————–&gt; 32-63<br>a[2]————————–&gt; 64-95<br>a[3]————————–&gt; 96-127  </li>
+<li>现在我们可以遍历以此bytes区域的位置输出（2，3，4，5，6），这样便达到了排序的目的<br>&emsp;从上面的例子我们可以看出，BitMap算法的思想比较简单，关键的问题就是如何确定10进制的数到2进制的映射图。<h2 id="Map映射"><a href="#Map映射" class="headerlink" title="Map映射"></a>Map映射</h2>&emsp;假设需要排序或则查找数的总数N=100000000，BitMap中1bit代表一个数字，1个int = 4Bytes = 4*8bit = 32 bit，那么N个数则需要N/32 int空间。所以我们需要申请内容空间的大小为int a[1 + n/32]，其中：a[0]在内存中占32位可以对应十进制数0-31，以此类推：<br>a[0]————————–&gt; 0-31<br>a[1]————————–&gt; 32-63<br>a[2]————————–&gt; 64-95<br>a[3]————————–&gt; 96-127  </li>
 </ol>
 <p>&emsp;那么十进制数如何转换为对应的bit位，下面介绍位移将十进制数转换为对应的bit位：  </p>
 <ol>
@@ -268,7 +268,10 @@
     <a href="/2020/04/24/halting-problem/" rel="prev" title="halting-problem">
       <i class="fa fa-chevron-left"></i> halting-problem
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2020/04/28/interface-segregation/" rel="next" title="interface-segregation">
+      interface-segregation <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -341,7 +344,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">14</span>
+          <span class="site-state-item-count">15</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -354,7 +357,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">18</span>
+        <span class="site-state-item-count">19</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
