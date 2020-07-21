@@ -20,22 +20,21 @@
     var CONFIG = {"hostname":"yoursite.com","root":"/","scheme":"Muse","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Mysql索引介绍 什么是索引&amp;emsp;一般的应用系统，读写比例在10:1左右，而且插入操作和一般的更新操作很少出现性能问题，在生产环境中，我们遇到最多的，也是最容易出问题的，还是一些复杂的查询操作，因此对查询语句的优化显然是重中之重。说起加速查询，就不得不提到索引了。 为什么要有索引&amp;emsp;索引在MySQL中也叫做“键”，是存储引擎用于快速找到记录的一种数据结构。索引对于良好的性能非常关键">
+  <meta name="description" content="锁分类公平锁、非公平锁公平锁指多个线程按照申请锁的顺序来获取锁，非公平锁就是没有顺序完全随机，所以能会造成优先级反转或者饥饿现象；synchronized 就是非公平锁，ReentrantLock（使用 CAS 和 AQS 实现） 通过构造参数可以决定是非公平锁还是公平锁，默认构造是非公平锁；非公平锁的吞吐量性能比公平锁大好。 可重入锁又名递归锁，指在同一个线程在外层方法获取锁的时候在进入内层方法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="mysql-index">
-<meta property="og:url" content="http://yoursite.com/2020/04/05/mysql-index/index.html">
+<meta property="og:title" content="lock">
+<meta property="og:url" content="http://yoursite.com/2020/07/21/lock/index.html">
 <meta property="og:site_name" content="Janlei’s note!">
-<meta property="og:description" content="Mysql索引介绍 什么是索引&amp;emsp;一般的应用系统，读写比例在10:1左右，而且插入操作和一般的更新操作很少出现性能问题，在生产环境中，我们遇到最多的，也是最容易出问题的，还是一些复杂的查询操作，因此对查询语句的优化显然是重中之重。说起加速查询，就不得不提到索引了。 为什么要有索引&amp;emsp;索引在MySQL中也叫做“键”，是存储引擎用于快速找到记录的一种数据结构。索引对于良好的性能非常关键">
+<meta property="og:description" content="锁分类公平锁、非公平锁公平锁指多个线程按照申请锁的顺序来获取锁，非公平锁就是没有顺序完全随机，所以能会造成优先级反转或者饥饿现象；synchronized 就是非公平锁，ReentrantLock（使用 CAS 和 AQS 实现） 通过构造参数可以决定是非公平锁还是公平锁，默认构造是非公平锁；非公平锁的吞吐量性能比公平锁大好。 可重入锁又名递归锁，指在同一个线程在外层方法获取锁的时候在进入内层方法">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2020-04-05T10:52:59.000Z">
-<meta property="article:modified_time" content="2020-04-05T12:22:33.186Z">
+<meta property="article:published_time" content="2020-07-21T02:11:32.000Z">
+<meta property="article:modified_time" content="2020-07-21T02:14:00.839Z">
 <meta property="article:author" content="Janlei">
-<meta property="article:tag" content="mysql">
-<meta property="article:tag" content="index">
-<meta property="article:tag" content="sql优化">
+<meta property="article:tag" content="lock">
+<meta property="article:tag" content="concurrent">
 <meta name="twitter:card" content="summary">
 
-<link rel="canonical" href="http://yoursite.com/2020/04/05/mysql-index/">
+<link rel="canonical" href="http://yoursite.com/2020/07/21/lock/">
 
 
 <script id="page-configurations">
@@ -48,7 +47,7 @@
   };
 </script>
 
-  <title>mysql-index | Janlei’s note!</title>
+  <title>lock | Janlei’s note!</title>
   
 
 
@@ -168,7 +167,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/04/05/mysql-index/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/21/lock/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/avatar.gif">
@@ -181,7 +180,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          mysql-index
+          lock
         </h1>
 
         <div class="post-meta">
@@ -192,7 +191,7 @@
               <span class="post-meta-item-text">Posted on</span>
               
 
-              <time title="Created: 2020-04-05 18:52:59 / Modified: 20:22:33" itemprop="dateCreated datePublished" datetime="2020-04-05T18:52:59+08:00">2020-04-05</time>
+              <time title="Created: 2020-07-21 10:11:32 / Modified: 10:14:00" itemprop="dateCreated datePublished" datetime="2020-07-21T10:11:32+08:00">2020-07-21</time>
             </span>
 
           
@@ -206,67 +205,16 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="Mysql索引"><a href="#Mysql索引" class="headerlink" title="Mysql索引"></a>Mysql索引</h1><h2 id="介绍"><a href="#介绍" class="headerlink" title="介绍"></a>介绍</h2><ul>
-<li><h3 id="什么是索引"><a href="#什么是索引" class="headerlink" title="什么是索引"></a>什么是索引</h3>&emsp;一般的应用系统，读写比例在10:1左右，而且插入操作和一般的更新操作很少出现性能问题，在生产环境中，我们遇到最多的，也是最容易出问题的，还是一些复杂的查询操作，因此对查询语句的优化显然是重中之重。说起加速查询，就不得不提到索引了。</li>
-<li><h3 id="为什么要有索引"><a href="#为什么要有索引" class="headerlink" title="为什么要有索引"></a>为什么要有索引</h3>&emsp;索引在MySQL中也叫做“键”，是存储引擎用于快速找到记录的一种数据结构。索引对于良好的性能非常关键，尤其是当表中的数据量越来越大时，索引对于性能的影响愈发重要。索引优化应该是对查询性能优化最有效的手段了。索引能够轻易将查询性能提高好几个数量级。索引相当于字典的音序表，如果要查某个字，如果不使用音序表，则需要从几百页中逐页去查。</li>
-<li><h3 id="优点"><a href="#优点" class="headerlink" title="优点"></a>优点</h3><ol>
-<li>类似书籍的目录索引，提高了数据检索的效率，降低了数据磁盘的IO成本。</li>
-<li>通过索引列对数据进行排序，降低了数据排序的成本，降低了CPU的消耗。</li>
-</ol>
-</li>
-<li><h3 id="缺点"><a href="#缺点" class="headerlink" title="缺点"></a>缺点</h3><ol>
-<li>实际上索引也是一张表，该表中保存了主键与索引字段，并指向实体类的记录，所以所以列也是要占用磁盘空间。</li>
-<li>虽然索引大大提高了查询效率，但是与此同时也降低了更新表的速度。如对进行更新操作INSERT、UPDATE、DELETE，因为更新表时MYSQL不仅要保存数据，还要保存索引文件，每次更新了索引列的字段，都会调整索引信息。</li>
-</ol>
-</li>
-</ul>
-<h2 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h2><ul>
-<li><h3 id="内存、缓存、磁盘"><a href="#内存、缓存、磁盘" class="headerlink" title="内存、缓存、磁盘"></a>内存、缓存、磁盘</h3></li>
-<li><h3 id="磁盘IO与预读"><a href="#磁盘IO与预读" class="headerlink" title="磁盘IO与预读"></a>磁盘IO与预读</h3><h2 id="索引结构"><a href="#索引结构" class="headerlink" title="索引结构"></a>索引结构</h2></li>
-<li><p>BTREE索引</p>
-</li>
-<li><p>HASH索引 </p>
-</li>
-<li><p>R-TREE索引</p>
-</li>
-<li><p>FULL索引  </p>
-<table>
-<thead>
-<tr>
-<th align="left">索引</th>
-<th align="left">InnoDB</th>
-<th align="left">MyISAM</th>
-<th align="left">Memory</th>
-</tr>
-</thead>
-<tbody><tr>
-<td align="left">BTREE</td>
-<td align="left">支持</td>
-<td align="left">支持</td>
-<td align="left">支持</td>
-</tr>
-<tr>
-<td align="left">HASH</td>
-<td align="left">不支持</td>
-<td align="left">不支持</td>
-<td align="left">支持</td>
-</tr>
-<tr>
-<td align="left">R-TREE</td>
-<td align="left">不支持</td>
-<td align="left">支持</td>
-<td align="left">不支持</td>
-</tr>
-<tr>
-<td align="left">FULL</td>
-<td align="left">5.6后支持</td>
-<td align="left">支持</td>
-<td align="left">不支持</td>
-</tr>
-</tbody></table>
-</li>
-</ul>
-<h2 id="索引使用"><a href="#索引使用" class="headerlink" title="索引使用"></a>索引使用</h2><h2 id="索引优化"><a href="#索引优化" class="headerlink" title="索引优化"></a>索引优化</h2>
+        <h1 id="锁分类"><a href="#锁分类" class="headerlink" title="锁分类"></a>锁分类</h1><h2 id="公平锁、非公平锁"><a href="#公平锁、非公平锁" class="headerlink" title="公平锁、非公平锁"></a>公平锁、非公平锁</h2><p>公平锁指多个线程按照申请锁的顺序来获取锁，非公平锁就是没有顺序完全随机，所以能会造成优先级反转或者饥饿现象；synchronized 就是非公平锁，ReentrantLock（使用 CAS 和 AQS 实现） 通过构造参数可以决定是非公平锁还是公平锁，默认构造是非公平锁；非公平锁的吞吐量性能比公平锁大好。</p>
+<h2 id="可重入锁"><a href="#可重入锁" class="headerlink" title="可重入锁"></a>可重入锁</h2><p>又名递归锁，指在同一个线程在外层方法获取锁的时候在进入内层方法会自动获取锁，synchronized 和 ReentrantLock 都是可重入锁，可重入锁可以在一定程度避免死锁。</p>
+<h2 id="独享锁、共享锁"><a href="#独享锁、共享锁" class="headerlink" title="独享锁、共享锁"></a>独享锁、共享锁</h2><p>独享锁是指该锁一次只能被一个线程持有，共享锁指该锁可以被多个线程持有；synchronized 和 ReentrantLock 都是独享锁，ReadWriteLock 的读锁是共享锁，写锁是独占锁；ReentrantLock 的独享锁和共享锁也是通过 AQS 来实现的。</p>
+<h2 id="互斥锁、读写锁"><a href="#互斥锁、读写锁" class="headerlink" title="互斥锁、读写锁"></a>互斥锁、读写锁</h2><p>其实就是独享锁、共享锁的具体说法；互斥锁实质就是 ReentrantLock，读写锁实质就是 ReadWriteLock。</p>
+<h2 id="乐观锁、悲观锁"><a href="#乐观锁、悲观锁" class="headerlink" title="乐观锁、悲观锁"></a>乐观锁、悲观锁</h2><p>这个分类不是具体锁的分类，而是看待并发同步的角度；悲观锁认为对于同一个数据的并发操作一定是会发生修改的（哪怕实质没修改也认为会修改），因此对于同一个数据的并发操作，悲观锁采取加锁的形式，因为悲观锁认为不加锁的操作一定有问题；乐观锁则认为对于同一个数据的并发操作是不会发生修改的，在更新数据的时候会采用不断的尝试更新，乐观锁认为不加锁的并发操作是没事的；由此可以看出悲观锁适合写操作非常多的场景，乐观锁适合读操作非常多的场景，不加锁会带来大量的性能提升，悲观锁在 java 中很常见，乐观锁其实就是基于 CAS 的无锁编程，譬如 java 的原子类就是通过 CAS 自旋实现的。</p>
+<h2 id="分段锁"><a href="#分段锁" class="headerlink" title="分段锁"></a>分段锁</h2><p>实质是一种锁的设计策略，不是具体的锁，对于 ConcurrentHashMap 而言其并发的实现就是通过分段锁的形式来实现高效并发操作；当要 put 元素时并不是对整个 hashmap 加锁，而是先通过 hashcode 知道它要放在哪个分段，然后对分段进行加锁，所以多线程 put 元素时只要放在的不是同一个分段就做到了真正的并行插入，但是统计 size 时就需要获取所有的分段锁才能统计；分段锁的设计是为了细化锁的粒度。</p>
+<h2 id="偏向锁、轻量级锁、重量级锁"><a href="#偏向锁、轻量级锁、重量级锁" class="headerlink" title="偏向锁、轻量级锁、重量级锁"></a>偏向锁、轻量级锁、重量级锁</h2><p>这种分类是按照锁状态来归纳的，并且是针对 synchronized 的，java 1.6 为了减少获取锁和释放锁带来的性能问题而引入的一种状态，其状态会随着竞争情况逐渐升级，锁可以升级但不能降级，意味着偏向锁升级成轻量级锁后无法降为偏向锁，这种升级无法降级的策略目的就是为了提高获得锁和释放锁的效率。</p>
+<h2 id="自旋锁"><a href="#自旋锁" class="headerlink" title="自旋锁"></a>自旋锁</h2><p>其实是相对于互斥锁的概念，互斥锁线程会进入 WAITING 状态和 RUNNABLE 状态的切换，涉及上下文切换、cpu 抢占等开销，自旋锁的线程一直是 RUNNABLE 状态的，一直在那循环检测锁标志位，机制不重复，但是自旋锁加锁全程消耗 cpu，起始开销虽然低于互斥锁，但随着持锁时间加锁开销是线性增长。</p>
+<h2 id="可中断锁"><a href="#可中断锁" class="headerlink" title="可中断锁"></a>可中断锁</h2><p>synchronized 是不可中断的，Lock 是可中断的，这里的可中断建立在阻塞等待中断，运行中是无法中断的。</p>
+
     </div>
 
     
@@ -275,9 +223,8 @@
 
       <footer class="post-footer">
           <div class="post-tags">
-              <a href="/tags/mysql/" rel="tag"># mysql</a>
-              <a href="/tags/index/" rel="tag"># index</a>
-              <a href="/tags/sql%E4%BC%98%E5%8C%96/" rel="tag"># sql优化</a>
+              <a href="/tags/lock/" rel="tag"># lock</a>
+              <a href="/tags/concurrent/" rel="tag"># concurrent</a>
           </div>
 
         
@@ -286,13 +233,10 @@
         
     <div class="post-nav">
       <div class="post-nav-item">
-    <a href="/2020/04/04/sql-index/" rel="prev" title="sql-index">
-      <i class="fa fa-chevron-left"></i> sql-index
+    <a href="/2020/07/14/sql-execute/" rel="prev" title="sql-execute">
+      <i class="fa fa-chevron-left"></i> sql-execute
     </a></div>
-      <div class="post-nav-item">
-    <a href="/2020/04/08/docker-redis/" rel="next" title="docker-redis">
-      docker-redis <i class="fa fa-chevron-right"></i>
-    </a></div>
+      <div class="post-nav-item"></div>
     </div>
       </footer>
     
@@ -351,7 +295,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Mysql索引"><span class="nav-number">1.</span> <span class="nav-text">Mysql索引</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#介绍"><span class="nav-number">1.1.</span> <span class="nav-text">介绍</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是索引"><span class="nav-number">1.1.1.</span> <span class="nav-text">什么是索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#为什么要有索引"><span class="nav-number">1.1.2.</span> <span class="nav-text">为什么要有索引</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#优点"><span class="nav-number">1.1.3.</span> <span class="nav-text">优点</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#缺点"><span class="nav-number">1.1.4.</span> <span class="nav-text">缺点</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#原理"><span class="nav-number">1.2.</span> <span class="nav-text">原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#内存、缓存、磁盘"><span class="nav-number">1.2.1.</span> <span class="nav-text">内存、缓存、磁盘</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#磁盘IO与预读"><span class="nav-number">1.2.2.</span> <span class="nav-text">磁盘IO与预读</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引结构"><span class="nav-number">1.3.</span> <span class="nav-text">索引结构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引使用"><span class="nav-number">1.4.</span> <span class="nav-text">索引使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#索引优化"><span class="nav-number">1.5.</span> <span class="nav-text">索引优化</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#锁分类"><span class="nav-number">1.</span> <span class="nav-text">锁分类</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#公平锁、非公平锁"><span class="nav-number">1.1.</span> <span class="nav-text">公平锁、非公平锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可重入锁"><span class="nav-number">1.2.</span> <span class="nav-text">可重入锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#独享锁、共享锁"><span class="nav-number">1.3.</span> <span class="nav-text">独享锁、共享锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#互斥锁、读写锁"><span class="nav-number">1.4.</span> <span class="nav-text">互斥锁、读写锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#乐观锁、悲观锁"><span class="nav-number">1.5.</span> <span class="nav-text">乐观锁、悲观锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分段锁"><span class="nav-number">1.6.</span> <span class="nav-text">分段锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#偏向锁、轻量级锁、重量级锁"><span class="nav-number">1.7.</span> <span class="nav-text">偏向锁、轻量级锁、重量级锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#自旋锁"><span class="nav-number">1.8.</span> <span class="nav-text">自旋锁</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#可中断锁"><span class="nav-number">1.9.</span> <span class="nav-text">可中断锁</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
