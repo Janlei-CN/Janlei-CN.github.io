@@ -160,6 +160,93 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/20/ddd/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/avatar.gif">
+      <meta itemprop="name" content="Janlei">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Janlei’s note!">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2020/08/20/ddd/" class="post-title-link" itemprop="url">ddd</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">Posted on</span>
+              
+
+              <time title="Created: 2020-08-20 23:13:31 / Modified: 23:13:43" itemprop="dateCreated datePublished" datetime="2020-08-20T23:13:31+08:00">2020-08-20</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="DDD-领域驱动设计"><a href="#DDD-领域驱动设计" class="headerlink" title="DDD 领域驱动设计"></a>DDD 领域驱动设计</h1><p>向外暴露对象，让领域对象去完成业务逻辑</p>
+<h2 id="贫血模型"><a href="#贫血模型" class="headerlink" title="贫血模型"></a>贫血模型</h2><p>只包含数据，不包含业务逻辑的类 BO<br>controller service dao都是为BO服务的业务接口<br>在贫血模型中，数据和业务逻辑被分割到不同的类中。</p>
+<h2 id="充血模型"><a href="#充血模型" class="headerlink" title="充血模型"></a>充血模型</h2><p>充血模型（Rich Domain Model）正好相反，数据和对应的业务逻辑被封装到同一个类中。<br>因此，这种充血模型满足面向对象的封装特性，是典型的面向对象编程风格。</p>
+<h1 id="六边形项目结构（根据实际情况自行组织与定义）："><a href="#六边形项目结构（根据实际情况自行组织与定义）：" class="headerlink" title="六边形项目结构（根据实际情况自行组织与定义）："></a>六边形项目结构（根据实际情况自行组织与定义）：</h1><ul>
+<li>InboundHandler 代替 controller<ul>
+<li>*WebController：处理 web 接口</li>
+<li>*WeChatController：处理微信公众号接口</li>
+<li>*AppController：处理 app 接口</li>
+<li>*MqListener：处理 消息</li>
+<li>*RpcController：处理子系统间的调用</li>
+</ul>
+</li>
+<li>service 服务于 use case，负责的是业务流程与对应规则<ul>
+<li>CQPS + SRP：读写分离和单一原则将 use case 分散到不同的 service 中，避免一个巨大的 service 类（碰到过 8000 行的 service）</li>
+</ul>
+</li>
+<li>Domain 服务于核心业务逻辑和核心业务数据<ul>
+<li>最高层组件，不会依赖底层组件</li>
+<li>易测试</li>
+</ul>
+</li>
+<li>outBoundhandle 代替 rep<ul>
+<li>MqProducer：发布消息</li>
+<li>Cache：从缓存获取数据</li>
+<li>sql：从数据库获取数据</li>
+<li>Rpc：从子系统获取数据</li>
+</ul>
+</li>
+</ul>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/08/17/spring/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -813,77 +900,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2020/07/06/GC/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/avatar.gif">
-      <meta itemprop="name" content="Janlei">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="Janlei’s note!">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2020/07/06/GC/" class="post-title-link" itemprop="url">GC</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">Posted on</span>
-              
-
-              <time title="Created: 2020-07-06 21:34:53 / Modified: 21:57:44" itemprop="dateCreated datePublished" datetime="2020-07-06T21:34:53+08:00">2020-07-06</time>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="GC"><a href="#GC" class="headerlink" title="GC"></a>GC</h1><h2 id="GCRoot"><a href="#GCRoot" class="headerlink" title="GCRoot"></a>GCRoot</h2><ul>
-<li>栈</li>
-<li>本地方法栈</li>
-<li>方法区 static<h2 id="标记清理"><a href="#标记清理" class="headerlink" title="标记清理"></a>标记清理</h2>内存碎片<h2 id="标记整理"><a href="#标记整理" class="headerlink" title="标记整理"></a>标记整理</h2>代价大<h2 id="复制"><a href="#复制" class="headerlink" title="复制"></a>复制</h2>2倍内存<h2 id="S0-E-gt-gt-S1-S1-E-gt-gt-S0"><a href="#S0-E-gt-gt-S1-S1-E-gt-gt-S0" class="headerlink" title="S0+E &gt;&gt; S1    S1+E&gt;&gt;S0"></a>S0+E &gt;&gt; S1    S1+E&gt;&gt;S0</h2><h2 id="YougGC-16-复制到老年代"><a href="#YougGC-16-复制到老年代" class="headerlink" title="YougGC 16 复制到老年代"></a>YougGC 16 复制到老年代</h2></li>
-</ul>
-<h2 id="年轻代"><a href="#年轻代" class="headerlink" title="年轻代"></a>年轻代</h2><ul>
-<li>serial  </li>
-<li>pawnew  </li>
-<li>parallelScavenge<h2 id="老年代"><a href="#老年代" class="headerlink" title="老年代"></a>老年代</h2></li>
-<li>serial old</li>
-<li>CMS</li>
-<li>parallel old<h2 id="G1-region"><a href="#G1-region" class="headerlink" title="G1(region)"></a>G1(region)</h2><h2 id="MixGC"><a href="#MixGC" class="headerlink" title="MixGC"></a>MixGC</h2></li>
-</ul>
-
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -953,7 +969,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">35</span>
+          <span class="site-state-item-count">36</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -966,7 +982,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">37</span>
+        <span class="site-state-item-count">38</span>
         <span class="site-state-item-name">tags</span></a>
       </div>
   </nav>
